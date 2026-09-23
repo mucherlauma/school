@@ -3,1150 +3,390 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Student Dashboard</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
 }
-
-html,
-body{
+html, body{
     width:100%;
-    height:100%;
-    overflow:hidden;
+    min-height:100%;
 }
-
 body{
     background:#f4f7fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    color:#243b64;
+    overflow-x:hidden;
 }
 
-
-/* =========================
-   DASHBOARD
-========================= */
-
+/* Main dashboard */
 .dashboard{
-    width:92%;
-    max-width:1000px;
-    height:90vh;
-    background:white;
-    border:1px solid #d9e1ec;
-    border-radius:28px;
-    padding:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    overflow:hidden;
+    width:min(1180px, 96%);
+    min-height:100vh;
+    margin:0 auto;
+    padding:0 24px 32px;
 }
 
-
-/* =========================
-   TOP BAR
-========================= */
-
-.header{
-    width:100%;
-    height:65px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#243b64;
-}
-
-.profile{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#243b64;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    cursor:pointer;
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-}
-
-.card{
-    height:220px;
-    border-radius:22px;
-    padding:25px;
-    border:1px solid #e0e6ef;
-    background:white;
-    box-shadow:0 7px 20px rgba(0,0,0,0.07);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 30px rgba(0,0,0,0.12);
-}
-
-
-/* Icon */
-
-.card-icon{
-    width:70px;
-    height:70px;
-    border-radius:18px;
-    background:#edf3ff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:34px;
-    margin-bottom:18px;
-}
-
-
-/* Title */
-
-.card h2{
-    color:#243b64;
-    font-size:22px;
-    text-align:center;
-}
-
-
-/* =========================
-   PROFILE POPUP
-========================= */
-
-.profile-popup{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-
-    align-items:center;
-    justify-content:center;
-
-    z-index:1000;
-    padding:20px;
-}
-
-.profile-box{
-    width:90%;
-    max-width:450px;
-    background:white;
-    border-radius:25px;
-    padding:30px;
-    position:relative;
-
-    box-shadow:0 20px 50px rgba(0,0,0,0.2);
-
-    animation:popup .25s ease;
-}
-
-@keyframes popup{
-
-    from{
-        transform:scale(.8);
-        opacity:0;
-    }
-
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-
-}
-
-.close{
-    position:absolute;
-    right:20px;
-    top:12px;
-
-    font-size:28px;
-    color:#777;
-
-    cursor:pointer;
-}
-
-.profile-photo{
-    width:85px;
-    height:85px;
-
-    border-radius:50%;
-
-    background:#edf3ff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:42px;
-
-    margin:5px auto 15px;
-}
-
-.profile-box h2{
-    text-align:center;
-    color:#243b64;
-    margin-bottom:5px;
-}
-
-.student-id{
-    text-align:center;
-    color:#777;
-    font-size:13px;
-    margin-bottom:22px;
-}
-
-.details{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.detail{
-    background:#f6f8fc;
-    padding:12px;
-    border-radius:12px;
-}
-
-.detail label{
-    display:block;
-    color:#888;
-    font-size:11px;
-    margin-bottom:5px;
-}
-
-.detail span{
-    color:#243b64;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.edit-btn{
-    width:100%;
-    margin-top:20px;
-    padding:13px;
-
-    border:none;
-    border-radius:12px;
-
-    background:#243b64;
-    color:white;
-
-    font-size:15px;
-    cursor:pointer;
-}
-
-
-/* =========================
-   MOBILE VIEW
-========================= */
-
-@media(max-width:700px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-        overflow:hidden;
-    }
-
-    body{
-        padding:0;
-    }
-
-    .dashboard{
-        width:94%;
-        height:94vh;
-
-        padding:15px;
-
-        border-radius:20px;
-
-        display:flex;
-        flex-direction:column;
-    }
-
-
-    /* Top Bar */
-
-    .header{
-        height:50px;
-        min-height:50px;
-
-        margin-bottom:20px;
-    }
-
-    .logo{
-        font-size:21px;
-    }
-
-    .profile{
-        width:42px;
-        height:42px;
-
-        font-size:18px;
-    }
-
-
-    /* Four Cards */
-
-    .cards{
-        flex:1;
-
-        display:grid;
-
-        grid-template-columns:1fr 1fr;
-
-        grid-template-rows:1fr 1fr;
-
-        gap:14px;
-    }
-
-
-    .card{
-        width:100%;
-        height:100%;
-
-        min-height:0;
-
-        padding:12px;
-
-        border-radius:17px;
-
-        justify-content:center;
-    }
-
-
-    .card:hover{
-        transform:none;
-    }
-
-
-    /* Card Icon */
-
-    .card-icon{
-        width:52px;
-        height:52px;
-
-        border-radius:14px;
-
-        font-size:26px;
-
-        margin-bottom:12px;
-    }
-
-
-    /* Card Title */
-
-    .card h2{
-        font-size:15px;
-        line-height:1.2;
-    }
-
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media(max-width:380px){
-
-    .dashboard{
-        width:95%;
-        height:95vh;
-        padding:12px;
-    }
-
-    .header{
-        margin-bottom:15px;
-    }
-
-    .logo{
-        font-size:19px;
-    }
-
-    .profile{
-        width:38px;
-        height:38px;
-        font-size:16px;
-    }
-
-    .cards{
-        gap:10px;
-    }
-
-    .card{
-        border-radius:14px;
-    }
-
-    .card-icon{
-        width:45px;
-        height:45px;
-
-        font-size:23px;
-
-        margin-bottom:9px;
-    }
-
-    .card h2{
-        font-size:13px;
-    }
-
-}
-.logo{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.college-logo{
-    width:auto;
-    max-width:180px;
-    height:55px;
-    object-fit:contain;
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-    .college-logo{
-        max-width:140px;
-        height:45px;
-    }
-
-}
-
-/* PREMIUM MOBILE DASHBOARD */
-
-@media (max-width:700px){
-
-    html,body{
-        width:100%;
-        min-height:100%;
-        height:auto;
-        overflow-x:hidden;
-        overflow-y:auto;
-    }
-
-    body{
-        display:block;
-        background:#f3f7fc;
-        padding:20px 12px;
-    }
-
-    .dashboard{
-        width:100%;
-        max-width:420px;
-        height:auto;
-        min-height:0;
-        margin:0 auto;
-        padding:18px 14px 22px;
-        border-radius:22px;
-        background:#fff;
-        border:1px solid #e5eaf2;
-        box-shadow:0 8px 30px rgba(30,50,90,.06);
-        display:block;
-        overflow:visible;
-    }
-
-    /* HEADER */
-
-    .header{
-        height:48px;
-        min-height:48px;
-        margin-bottom:22px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-    }
-
-    .college-logo{
-        max-width:145px;
-        height:44px;
-        object-fit:contain;
-    }
-
-    .profile{
-        width:40px;
-        height:40px;
-        font-size:18px;
-        flex-shrink:0;
-        background:#243b64;
-    }
-
-    /* FOUR BOXES */
-
-    .cards{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        grid-template-rows:auto;
-        gap:12px;
-        flex:none;
-    }
-
-    .card{
-        width:100%;
-        height:145px;
-        min-height:0;
-        padding:15px 8px;
-        border-radius:17px;
-        background:#fff;
-        border:1px solid #e6ebf3;
-        box-shadow:0 4px 12px rgba(25,45,85,.045);
-
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        gap:12px;
-
-        transition:transform .2s ease,
-                   box-shadow .2s ease;
-    }
-
-    .card:active{
-        transform:scale(.97);
-        background:#f8faff;
-    }
-
-    /* ICONS */
-
-    .card-icon{
-        width:52px;
-        height:52px;
-        min-width:52px;
-        min-height:52px;
-        margin:0;
-        border-radius:15px;
-        background:#edf3ff;
-        font-size:25px;
-
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
-    /* TEXT */
-
-    .card h2{
-        margin:0;
-        font-size:13px;
-        font-weight:700;
-        line-height:1.35;
-        letter-spacing:0;
-        color:#243b64;
-        text-align:center;
-    }
-
-}
-
-/* SMALL MOBILE */
-
-@media (max-width:380px){
-
-    .dashboard{
-        padding:15px 12px 18px;
-    }
-
-    .cards{
-        gap:10px;
-    }
-
-    .card{
-        height:132px;
-        border-radius:15px;
-        gap:10px;
-    }
-
-    .card-icon{
-        width:46px;
-        height:46px;
-        min-width:46px;
-        min-height:46px;
-        font-size:23px;
-    }
-
-    .card h2{
-        font-size:12px;
-    }
-
-}
-
-/* HEADER DIVIDER */
-
-.header{
-    border-bottom:1px solid #e8edf5;
-    padding-bottom:12px;
-    margin-bottom:20px;
-    height:70px;
-}
-
-/* DASHBOARD HEADING */
-
-.dashboard-heading{
-    margin-bottom:22px;
-}
-
-.dashboard-heading h3{
-    font-size:20px;
-    font-weight:700;
-    color:#243b64;
-    margin-bottom:6px;
-}
-
-.dashboard-heading p{
-    font-size:13px;
-    color:#8b98ac;
-    font-weight:400;
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-    .header{
-        height:60px;
-        min-height:60px;
-        margin-bottom:18px;
-        padding-bottom:12px;
-    }
-
-    .dashboard-heading{
-        margin-bottom:18px;
-        padding-left:2px;
-    }
-
-    .dashboard-heading h3{
-        font-size:18px;
-        margin-bottom:5px;
-    }
-
-    .dashboard-heading p{
-        font-size:12px;
-        line-height:1.5;
-    }
-
-}
-
-
-/* FOUR ITEMS: no visible outer box around them */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:0;
-    border:none;
-    border-radius:0;
-    overflow:visible;
-    background:transparent;
-    box-shadow:none;
-}
-.cards .card{
-    height:220px;
-    min-height:0;
-    width:100%;
-    margin:0;
-    border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    transform:none;
-}
-.cards .card:hover{
-    transform:none;
-    box-shadow:none;
-    background:#f8faff;
-}
-@media(max-width:700px){
-    .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;}
-    .cards .card{height:145px;padding:15px 8px;gap:12px;}
-    .cards .card:hover{transform:none;}
-}
-@media(max-width:380px){
-    .cards .card{height:132px;padding:12px 8px;}
-}
-
-
-
-/* PLAIN / TRANSPARENT DASHBOARD - remove all box appearances */
-.dashboard{
-    background:transparent !important;
-    border:none !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-}
-.cards{
-    background:transparent !important;
-    border:none !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    overflow:visible !important;
-}
-.cards .card{
-    background:transparent !important;
-    border:none !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-}
-.cards .card:hover,
-.cards .card:active{
-    background:transparent !important;
-    box-shadow:none !important;
-    transform:none !important;
-}
-
-
-/* College logo with name beside it */
-.logo{
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:10px;
-    min-width:0;
-}
-.college-name{
-    color:#243b64;
-    font-size:16px;
-    font-weight:600;
-    white-space:nowrap;
-}
-@media(max-width:700px){
-    .logo{gap:7px;}
-    .college-name{font-size:13px; white-space:normal; line-height:1.2;}
-    .college-logo{max-width:105px; height:40px;}
-}
-
-
-/* STICKY HEADER: keep the logo, college name and profile visible while scrolling */
+/* Sticky top header */
 .header{
     position:sticky;
     top:0;
     z-index:100;
-    background:inherit;
+    height:86px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 8px;
+    margin-bottom:26px;
+    background:rgba(244,247,251,.97);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #e2e8f1;
 }
-
-
-
-/* REMOVE THE SMALL BOXES BEHIND DASHBOARD ICONS */
-.cards .card-icon{
-    width:auto;
-    height:auto;
+.logo{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:12px;
     min-width:0;
-    min-height:0;
-    padding:0;
-    margin:0 0 12px 0;
+}
+.college-logo{
+    width:58px;
+    height:58px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+.college-name{
+    font-size:22px;
+    font-weight:700;
+    color:#243b64;
+    overflow-wrap:anywhere;
+}
+.profile{
+    width:48px;
+    height:48px;
+    flex-shrink:0;
     border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    font-size:34px;
-}
-@media(max-width:700px){
-    .cards .card-icon{
-        width:auto;
-        height:auto;
-        min-width:0;
-        min-height:0;
-        padding:0;
-        margin:0 0 12px 0;
-        border:0;
-        border-radius:0;
-        background:transparent;
-        box-shadow:none;
-        font-size:25px;
-    }
+    border-radius:50%;
+    background:#243b64;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(36,59,100,.18);
 }
 
+/* Dashboard title */
+.dashboard-heading{
+    margin:0 0 22px 4px;
+}
+.dashboard-heading h1{
+    font-size:25px;
+    margin-bottom:7px;
+    color:#243b64;
+}
+.dashboard-heading p{
+    color:#8793a7;
+    font-size:14px;
+}
 
-
-/* SHOW FOUR INDIVIDUAL CARDS (without a shared outer container) */
+/* Responsive tools grid: 4 columns on laptop */
 .cards{
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(4, minmax(0, 1fr));
     gap:18px;
-    border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    overflow:visible;
 }
-.cards .card{
-    height:180px;
-    padding:22px 14px;
-    border:1px solid #e0e6ef;
-    border-radius:20px;
-    background:#ffffff;
-    box-shadow:0 6px 18px rgba(0,0,0,.07);
+.card{
+    min-width:0;
+    min-height:174px;
+    padding:22px 12px;
+    border:1px solid #e3e9f2;
+    border-radius:16px;
+    background:#fff;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:12px;
+    text-align:center;
+    gap:13px;
+    box-shadow:0 5px 16px rgba(30,50,90,.055);
     transition:transform .2s ease, box-shadow .2s ease;
 }
-.cards .card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 24px rgba(0,0,0,.10);
-    background:#fff;
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 11px 24px rgba(30,50,90,.11);
 }
-/* Keep the icons simple, without a separate square behind each one */
-.cards .card-icon{
-    width:auto;
-    height:auto;
-    min-width:0;
-    min-height:0;
-    margin:0;
-    padding:0;
-    border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    font-size:32px;
+.card-icon{
+    width:60px;
+    height:60px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:#fff;
+    background:#377fe8;
 }
-.cards .card h2{
-    margin:0;
-    font-size:17px;
+.card:nth-child(6n+1) .card-icon{background:#ed4050;}
+.card:nth-child(6n+2) .card-icon{background:#7924d8;}
+.card:nth-child(6n+3) .card-icon{background:#287fdb;}
+.card:nth-child(6n+4) .card-icon{background:#14aaa8;}
+.card:nth-child(6n+5) .card-icon{background:#d92eb1;}
+.card:nth-child(6n+6) .card-icon{background:#31a66a;}
+.card:nth-child(7n) .card-icon{background:#e8c51b;}
+.card h2{
+    font-size:16px;
     line-height:1.3;
-    text-align:center;
-}
-@media(max-width:700px){
-    .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
-    .cards .card{height:150px;padding:16px 8px;border-radius:16px;gap:10px;}
-    .cards .card-icon{font-size:27px;}
-    .cards .card h2{font-size:14px;}
-    .cards .card:hover{transform:none;}
-}
-@media(max-width:380px){
-    .cards{gap:10px;}
-    .cards .card{height:135px;padding:12px 6px;}
-    .cards .card h2{font-size:12px;}
+    font-weight:600;
+    color:#243b64;
 }
 
-
-/* Only Attendance should appear inside a card */
-.cards .card:nth-child(1){
-    border:1px solid #e0e6ef !important;
-    border-radius:20px !important;
-    background:#ffffff !important;
-    box-shadow:0 6px 18px rgba(0,0,0,.07) !important;
-    overflow:hidden;
+/* Profile popup */
+.profile-popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:rgba(0,0,0,.45);
+    align-items:center;
+    justify-content:center;
+    padding:18px;
 }
-.cards .card:nth-child(1):hover{
-    background:#ffffff !important;
-    box-shadow:0 10px 24px rgba(0,0,0,.10) !important;
-    transform:translateY(-3px);
-}
-
-/* Keep the other three items plain and transparent */
-.cards .card:nth-child(n+2){
-    border:none !important;
-    border-radius:0 !important;
-    background:transparent !important;
-    box-shadow:none !important;
-}
-.cards .card:nth-child(n+2):hover,
-.cards .card:nth-child(n+2):active{
-    background:transparent !important;
-    box-shadow:none !important;
-    transform:none !important;
-}
-
-@media(max-width:700px){
-    .cards .card:nth-child(1):hover{transform:none;}
-}
-
-/* LOGOUT BUTTON */
-.logout-btn{
+.profile-box{
+    position:relative;
     width:100%;
-    margin-top:12px;
+    max-width:460px;
+    max-height:90vh;
+    overflow-y:auto;
+    padding:30px;
+    border-radius:22px;
+    background:#fff;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+    animation:popup .22s ease;
+}
+@keyframes popup{
+    from{transform:scale(.92);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+.close{
+    position:absolute;
+    top:10px;
+    right:18px;
+    font-size:29px;
+    color:#777;
+    cursor:pointer;
+}
+.profile-photo{
+    width:78px;
+    height:78px;
+    margin:4px auto 14px;
+    border-radius:50%;
+    background:#edf3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+}
+.profile-box h2{
+    text-align:center;
+    margin-bottom:6px;
+    color:#243b64;
+}
+.student-id{
+    text-align:center;
+    color:#7e899b;
+    font-size:13px;
+    margin-bottom:22px;
+}
+.details{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:11px;
+}
+.detail{
+    min-width:0;
+    padding:12px;
+    border-radius:11px;
+    background:#f5f7fb;
+    overflow-wrap:anywhere;
+}
+.detail label{
+    display:block;
+    margin-bottom:5px;
+    color:#8994a6;
+    font-size:11px;
+}
+.detail span{
+    color:#243b64;
+    font-size:13px;
+    font-weight:700;
+}
+.edit-btn, .logout-btn{
+    width:100%;
+    margin-top:16px;
     padding:13px;
-    border:1px solid #f4c7c7;
-    border-radius:12px;
-    background:#fff1f1;
-    color:#c62828;
+    border:0;
+    border-radius:11px;
     font-size:15px;
     font-weight:700;
     cursor:pointer;
 }
-.logout-btn:hover{background:#ffe3e3;}
+.edit-btn{
+    background:#243b64;
+    color:#fff;
+}
+.logout-btn{
+    margin-top:10px;
+    border:1px solid #f2caca;
+    background:#fff1f1;
+    color:#c62828;
+}
+.logout-btn:hover{background:#ffe4e4;}
+
+/* Tablet and mobile: 3 cards per row */
+@media(max-width:700px){
+    .dashboard{
+        width:100%;
+        padding:0 12px 24px;
+    }
+    .header{
+        height:72px;
+        padding:9px 3px;
+        margin-bottom:20px;
+        gap:10px;
+    }
+    .college-logo{
+        width:44px;
+        height:44px;
+    }
+    .college-name{
+        font-size:17px;
+        line-height:1.2;
+    }
+    .profile{
+        width:41px;
+        height:41px;
+        font-size:20px;
+    }
+    .dashboard-heading{
+        margin:0 0 17px 3px;
+    }
+    .dashboard-heading h1{font-size:21px;}
+    .dashboard-heading p{font-size:12px;line-height:1.4;}
+    .cards{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:10px;
+    }
+    .card{
+        min-height:128px;
+        padding:13px 5px;
+        border-radius:13px;
+        gap:9px;
+    }
+    .card-icon{
+        width:44px;
+        height:44px;
+        border-radius:11px;
+        font-size:23px;
+    }
+    .card h2{
+        font-size:12px;
+        line-height:1.25;
+        overflow-wrap:anywhere;
+    }
+}
+@media(max-width:360px){
+    .dashboard{padding-left:9px;padding-right:9px;}
+    .cards{gap:7px;}
+    .card{min-height:118px;padding:10px 3px;}
+    .card-icon{width:39px;height:39px;font-size:21px;}
+    .card h2{font-size:11px;}
+    .college-name{font-size:15px;}
+    .college-logo{width:39px;height:39px;}
+}
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
 <div class="dashboard">
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="College Logo" class="college-logo">
+            <span class="college-name">cezonal</span>
+        </div>
+        <button class="profile" type="button" aria-label="Open profile" onclick="openProfile()">👤</button>
+    </header>
 
+    <section class="dashboard-heading">
+        <h1>Student Dashboard</h1>
+        <p>Access your school tools and student services</p>
+    </section>
 
-    <!-- TOP BAR -->
-
-    <div class="header">
-
-       <div class="logo">
-    <img
-        src="logo.png"
-        alt="College Logo"
-        class="college-logo"
-    >
-    <span class="college-name">cezonal</span>
+    <main class="cards">
+        <div class="card"><div class="card-icon">📚</div><h2>Class<br>Homework</h2></div>
+        <div class="card"><div class="card-icon">📹</div><h2>Live<br>Classes</h2></div>
+        <div class="card"><div class="card-icon">📝</div><h2>Online Test<br>&amp; Results</h2></div>
+        <div class="card"><div class="card-icon">💬</div><h2>Messages</h2></div>
+        <div class="card"><div class="card-icon">📋</div><h2>Attendance<br>&amp; Leave</h2></div>
+        <div class="card"><div class="card-icon">📨</div><h2>Student<br>Complaints</h2></div>
+        <div class="card"><div class="card-icon">🖼️</div><h2>School<br>Gallery</h2></div>
+        <div class="card"><div class="card-icon">🗓️</div><h2>School<br>Calendar</h2></div>
+        <div class="card"><div class="card-icon">📰</div><h2>School<br>Newsboard</h2></div>
+        <div class="card"><div class="card-icon">📖</div><h2>Class<br>Book List</h2></div>
+        <div class="card"><div class="card-icon">📑</div><h2>Class<br>Syllabus</h2></div>
+        <div class="card"><div class="card-icon">🗂️</div><h2>Exam<br>Datasheet</h2></div>
+        <div class="card"><div class="card-icon">🏖️</div><h2>Holiday<br>Homework</h2></div>
+        <div class="card"><div class="card-icon">🎉</div><h2>School<br>Greetings</h2></div>
+        <div class="card"><div class="card-icon">💡</div><h2>Daily<br>Thoughts</h2></div>
+    </main>
 </div>
 
-        <div
-            class="profile"
-            onclick="openProfile()"
-        >
-            👤
-        </div>
-
-    </div>
-
-
-    <!-- FOUR BOXES -->
-
-    <div class="cards">
-
-
-        <!-- Attendance -->
-
-        <div class="card">
-
-            <div class="card-icon">
-                📅
-            </div>
-
-            <h2>
-                Attendance
-            </h2>
-
-        </div>
-
-
-        <!-- Fee Details -->
-
-        <div class="card">
-
-            <div class="card-icon">
-                💳
-            </div>
-
-            <h2>
-                Fee Details
-            </h2>
-
-        </div>
-
-
-        <!-- Progress Report -->
-
-        <div class="card">
-
-            <div class="card-icon">
-                📊
-            </div>
-
-            <h2>
-                Progress Report
-            </h2>
-
-        </div>
-
-
-        <!-- Exam Results -->
-
-        <div class="card">
-
-            <div class="card-icon">
-                🎓
-            </div>
-
-            <h2>
-                Exam Results
-            </h2>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================
-     PROFILE POPUP
-========================= -->
-
-<div
-    class="profile-popup"
-    id="profilePopup"
->
-
+<!-- Profile popup -->
+<div class="profile-popup" id="profilePopup">
     <div class="profile-box">
-
-
-        <div
-            class="close"
-            onclick="closeProfile()"
-        >
-            ×
-        </div>
-
-
-        <div class="profile-photo">
-            👤
-        </div>
-
-
-        <h2>
-            Uma Devi
-        </h2>
-
-
-        <div class="student-id">
-            Student ID: SVEC2026CSE001
-        </div>
-
+        <div class="close" role="button" aria-label="Close profile" onclick="closeProfile()">×</div>
+        <div class="profile-photo">👤</div>
+        <h2>Uma Devi</h2>
+        <div class="student-id">Student ID: SVEC2026CSE001</div>
 
         <div class="details">
-
-
-            <div class="detail">
-                <label>Full Name</label>
-                <span>Uma Devi</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Roll Number</label>
-                <span>23A81A0501</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Branch</label>
-                <span>CSE</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Year</label>
-                <span>4th Year</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Email</label>
-                <span>umadevi@gmail.com</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Phone</label>
-                <span>9876543210</span>
-            </div>
-
-
-            <div class="detail">
-                <label>College</label>
-                <span>SVEC</span>
-            </div>
-
-
-            <div class="detail">
-                <label>Section</label>
-                <span>CSE-A</span>
-            </div>
-
-
+            <div class="detail"><label>Full Name</label><span>Uma Devi</span></div>
+            <div class="detail"><label>Roll Number</label><span>23A81A0501</span></div>
+            <div class="detail"><label>Branch</label><span>CSE</span></div>
+            <div class="detail"><label>Year</label><span>4th Year</span></div>
+            <div class="detail"><label>Email</label><span>umadevi@gmail.com</span></div>
+            <div class="detail"><label>Phone</label><span>9876543210</span></div>
+            <div class="detail"><label>College</label><span>SVEC</span></div>
+            <div class="detail"><label>Section</label><span>CSE-A</span></div>
         </div>
 
-
-        <button class="edit-btn">
-            Edit Profile
-        </button>
-
-        <button type="button" class="logout-btn" onclick="logout()">
-            Logout
-        </button>
-
-
+        <button class="edit-btn" type="button">Edit Profile</button>
+        <button class="logout-btn" type="button" onclick="logout()">Logout</button>
     </div>
-
 </div>
 
 <script>
-
 function logout(){
     sessionStorage.removeItem("cezonalLoggedIn");
     window.location.replace("index.html");
 }
-
 function openProfile(){
-
     document.getElementById("profilePopup").style.display = "flex";
-
 }
-
 function closeProfile(){
-
     document.getElementById("profilePopup").style.display = "none";
-
 }
-
-window.onclick = function(event){
-
-    const popup =
-        document.getElementById("profilePopup");
-
-    if(event.target === popup){
-
-        closeProfile();
-
-    }
-
-};
-
-document.addEventListener("keydown",function(event){
-
-    if(event.key === "Escape"){
-
-        closeProfile();
-
-    }
-
+window.addEventListener("click", function(event){
+    const popup = document.getElementById("profilePopup");
+    if(event.target === popup) closeProfile();
+});
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape") closeProfile();
 });
 </script>
 </body>
